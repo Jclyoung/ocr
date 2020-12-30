@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-// import { createWorker } from 'tesseract.js';
 import './App.css';
 
 const Tesseract = window.Tesseract;
@@ -29,7 +28,6 @@ function App() {
 
   const UserImage = ({ image }) => (
     <img className="img" src={ URL.createObjectURL(sourceImage) } alt=""/>
-    // <img className="img" src="assets/ipsum.png" alt=""/>
   )
 
   useEffect(() => {
@@ -62,69 +60,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-// import React from 'react';
-// import Tesseract from 'tesseract.js';
-// // import { Provider } from 'react-redux';
-// // import { createStore, compose } from 'redux';
-// // import Main from './Main';
-
-// // const store = createStore(
-// // );
-
-
-
-// function App() {
-//   // <Provider store={store}>
-//   const tesseractFunct = () => Tesseract.recognize(
-//   'assets/ipsum.png',
-//   'eng',
-//   { logger: m => console.log(m) }
-// ).then(({ data: { text } }) => {
-//   return text;
-// })
-//   return (
-//     <div className="App">
-//       <div>
-//         <h1>image here</h1>
-//         <img src="assets/ipsum.png" alt="" />
-//       </div>
-//       <div>
-//         <h1>Output Here</h1>
-//         <p>
-//           {
-//             tesseractFunct(),
-
-//             imageText
-//           }
-//         </p>
-//       </div>
-
-//     </div>
-//   );
-//   // </Provider>
-  
-// }
-
-// export default App;
-
-
-
-// // working example
-// const { createWorker } = require('tesseract.js');
-
-// const worker = createWorker();
-
-// (async () => {
-//   await worker.load();
-//   await worker.loadLanguage('eng');
-//   await worker.initialize('eng');
-//   const { data: { text } } = await worker.recognize('assets/ipsum.png');
-//   console.log(text);
-//   await worker.terminate();
-// })();

@@ -1,12 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
+
 import './App.css';
+import ipsum from './assets/bacon.png';
 
 const Tesseract = window.Tesseract;
 
-const defaultImage = (
-  <img className="img" src="assets/card1.jpg" alt=""/> 
-)
+const DefaultImage = () => (
+  <img className="img" src={ ipsum } />
+);
 
 function App() {
   const worker = Tesseract.createWorker({
@@ -19,17 +21,17 @@ function App() {
     await worker.load();
     await worker.loadLanguage('eng');
     await worker.initialize('eng');
-    const { data: { text } } = await worker.recognize(sourceImage || "assets/card1.jpg");
+    const { data: { text } } = await worker.recognize(sourceImage || ipsum);
     setAnalyzingImage('')
     setOcr(text);
   };
 
   const [ocr, setOcr] = useState();
   const [sourceImage, setSourceImage] = useState("");
-  const [analyzingMessage, setAnalyzingImage] = useState();
+  const [analyzingMessage, setAnalyzingImage] = useState('Analyzing image....');
 
   const UserImage = ({ image }) => (
-    <img className="img" src={ URL.createObjectURL(sourceImage) } alt=""/>
+    <img className="img" src={ URL.createObjectURL(image) } alt=""/>
   )
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <div className="img">
-        <h1>image to test</h1>a
+        <h1>image to test</h1>
         <form >
           <input type="file"
             name="file" 
@@ -50,7 +52,7 @@ function App() {
               e.preventDefault();
           }} />
         </form>
-        { !sourceImage ? defaultImage : <UserImage image={ sourceImage } /> }
+        { !sourceImage ? <DefaultImage /> : <UserImage image={ sourceImage } /> }
       </div>
       <div className="text-main">
         <h1>new rendered text</h1>

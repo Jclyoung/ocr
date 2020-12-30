@@ -9,14 +9,12 @@ const defaultImage = (
   <img className="img" src="assets/card1.jpg" alt=""/> 
 )
 
-
-
 function App() {
   const worker = Tesseract.createWorker({
     logger: m => console.log(m),
+    langPath: '/customLanguageData',
+    gzip: false
   });
-
-  const path = "assets/card1.jpg"
 
   const doOCR = async () => {
     await worker.load();

@@ -20,11 +20,13 @@ function App() {
     await worker.loadLanguage('eng');
     await worker.initialize('eng');
     const { data: { text } } = await worker.recognize(sourceImage || "assets/card1.jpg");
+    setAnalyzingImage('')
     setOcr(text);
   };
 
-  const [ocr, setOcr] = useState('Scanning Image...');
+  const [ocr, setOcr] = useState();
   const [sourceImage, setSourceImage] = useState("");
+  const [analyzingMessage, setAnalyzingImage] = useState();
 
   const UserImage = ({ image }) => (
     <img className="img" src={ URL.createObjectURL(sourceImage) } alt=""/>
@@ -42,10 +44,9 @@ function App() {
           <input type="file"
             name="file" 
             onChange={ (e) => {
-              console.log('event', e.target.files[0]);
-            
               setSourceImage(e.target.files[0]);
-              console.log('new state: ', sourceImage)
+              setOcr('');
+              setAnalyzingImage('Analyzing text...');
               e.preventDefault();
           }} />
         </form>
@@ -53,6 +54,7 @@ function App() {
       </div>
       <div className="text-main">
         <h1>new rendered text</h1>
+        <p>{ analyzingMessage }</p>
         <p>{ ocr }</p>
       </div>
     </div>

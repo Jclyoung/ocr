@@ -13,7 +13,7 @@ const DefaultImage = () => (
 function App() {
   const worker = Tesseract.createWorker({
     logger: m => console.log(m),
-    langPath: '/customLanguageData',
+    langPath: `${process.env.PUBLIC_URL}/customLanguageData`,
     gzip: false
   });
 

@@ -41,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <div className="img">
-        <h1>I CHANGED MANt</h1>
+        <h1>image to test</h1>
         <form >
           <input type="file"
             name="file" 
